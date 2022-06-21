@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Portal Academic - IBI Kesatuan Bogor</title>
+
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
+    <script src="./assets/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="./assets/css/styles.main.css" />
+    <style>
+      body,
+      html {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        font-size: 13px !important;
+        font-weight: 400;
+        font-family: Poppins, Helvetica, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        color: #181c32;
+      }
+    </style>
+
+    <script src="./assets/js/const/Account.js"></script>
+    <script>
+      console.log(MyAccount);
+      const handlerLogin = (e) =>{
+        e.preventDefault();
+        var formID = e.target.id;
+        var target = document.getElementById(formID); 
+        var username = target.getElementsByClassName("username")[0].value;
+        var password = target.getElementsByClassName("password")[0].value;
+        if((MyAccount.email === username) && (MyAccount.password === password) ){
+          window.location.replace("./index.html");
+        }else{
+          alert("Failed Login");
+        }
+      }
+    </script>
+  </head>
+  <body class="bg-body">
+    <div class="d-flex flex-column flex-root">
+      <!--begin::Authentication - Signup Free Trial-->
+      <div class="d-flex flex-column flex-xl-row flex-column-fluid">
+        <!--begin::Aside-->
+        <div class="d-none d-lg-block d-flex flex-column flex-lg-row-fluid w-xl-75 bgi-no-repeat bgi-size-contain bgi-position-x-end" style="background-image: url(./assets/img/ibik-bg-cover.jpeg);background-color: #282667;background-size: 120% 100%;">
+          <!--begin::Illustration-->
+          <div class="d-flex flex-row-auto bgi-no-repeat bgi-position-x-center bgi-size-contain bgi-position-y-bottom min-h-200px min-h-xl-300px mb-xl-10"
+            style="background-image: url(assets/img/ibik-bg-cover.jpeg)"
+          ></div>
+          <!--end::Illustration-->
+        </div>
+        <div class="d-lg-none d-sm-block d-flex flex-column flex-lg-row-fluid w-xl-75">
+          <div class="bg-purple py-3 px-3">
+            <img src="./assets/img/logoibik.png" alt="Logo IBIK" class="w-100 bg-white p-2 rounded">
+          </div>
+        </div>
+        <!--begin::Aside-->
+        <!--begin::Content-->
+        <div class="d-flex flex-column flex-lg-row-fluid py-5">
+          <!--begin::Wrapper-->
+          <div class="container w-sm-100 w-lg-75">
+            <div class="card border-0">
+              <div class="card-body text-center py-sm-0 py-lg-5 my-sm-1 my-lg-5">
+                <h1 class="card-title text-purple fw-semibold">Academic Portal<br />University</h1>
+                <p class="text-muted mb-5">
+                  Please login using the same username and password as your
+                  <span class="text-purple">Account</span>
+                </p>
+                <form action="" id="form-login" autocomplete="off" onsubmit="return handlerLogin(event)" method="post">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="username"
+                      class="form-control username"
+                      placeholder="firstname.lastname@domain"
+                    />
+                    <label class="fw-bold">Email</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input
+                      type="password"
+                      name="password"
+                      class="form-control password"
+                      placeholder="enter your password"
+                    />
+                    <label class="fw-bold">Password</label>
+                  </div>
+                  <div class="d-grid gap-2 mt-3">
+                    <button
+                      class="btn btn-lg btn-block btn-purple text-white fw-bold fs-5 px-5 py-3"
+                      type="submit"
+                    >
+                      Sign In
+                    </button>
+                  </div>
+                </form>
+                <p class="text-center text-purple mt-5">Download app from :</p>
+                <div class="bd-example mb-5">
+                  <button
+                    class="btn btn-dark btn-lg px-4 mb-3 fs-5 text-white fw-bold"
+                    type="button"
+                  >
+                    Google Play
+                  </button>
+                  <button
+                    class="btn btn-dark btn-lg px-4 mb-3 fs-5 text-white fw-bold"
+                    type="button"
+                  >
+                    Apple Store
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <footer class="d-flex flex-center flex-wrap fs-6 p-5 pb-0 position-relative bottom-0" >
+              <div class="d-flex flex-center fw-bold fs-6">
+                <p class="text-center">
+                  Copyright &copy; 2022 IBIK <br />
+                  Design by
+                  <a href="" class="text-muted text-hover-primary">Febry D Fairuz</a>
+                </p>
+              </div>
+            </footer>
+          </div>
+          <!--end::Wrapper-->
+        </div>
+        <!--end::Right Content-->
+      </div>
+      <!--end::Authentication - Signup Free Trial-->
+    </div>
+  </body>
+</html>

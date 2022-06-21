@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Attendance - IBI Kesatuan Bogor</title>
+
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./assets/font/bootstrap-icons.css" />
+    <script src="./assets/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="./assets/css/styles.main.css" />
+    <script src="./assets/js/jquery.min.js"></script>
+    <script src="./assets/js/const/Account.js"></script>
+    <script src="./assets/js/const/CoursesData.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        var nameSplit = MyAccount.name.split(" ");
+        $(".username").text(nameSplit[0]);
+        $(".npm").text(MyAccount.id);
+        $("[data-toggle=sidebar-colapse]").click(function () {
+          SidebarCollapse();
+        });
+      });
+
+      function SidebarCollapse() {
+        $(".menu-collapsed").toggleClass("d-none");
+        $(".sidebar-submenu").toggleClass("d-none");
+        $(".submenu-icon").toggleClass("d-none");
+        $("#sidebar-container").toggleClass(
+          "sidebar-expanded sidebar-collapsed"
+        );
+
+        // Treating d-flex/d-none on separators with title
+        var SeparatorTitle = $(".sidebar-separator-title");
+        if (SeparatorTitle.hasClass("d-flex")) {
+          SeparatorTitle.removeClass("d-flex");
+        } else {
+          SeparatorTitle.addClass("d-flex");
+        }
+
+        // Collapse/Expand icon
+        $("#collapse-icon").toggleClass(
+          "fa-angle-double-left fa-angle-double-right"
+        );
+      }
+    </script>
+  </head>
+  <body>
+    <!-- HEADER NAVIGATION -->
+    <header>
+      <nav class="navbar navbar-expand-lg bg-purple">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img
+              src="./assets/img/logo-ibik-white.jpeg"
+              width="30"
+              height="30"
+              class="d-inline-block align-top rounded"
+              alt="Logo IBIK"
+            />
+          </a>
+          <button
+            class="navbar-toggler collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarCollapse"
+            aria-controls="navbarCollapse"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="navbar-collapse collapse" id="navbarCollapse">
+            <!-- LOGO COMPANY -->
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+              <li class="nav-item">
+                <a class="nav-link text-white" aria-current="page" href="#"
+                  >Portal Academic
+                </a>
+              </li>
+              <li class="nav-item d-none d-lg-block">
+                <a class="nav-link" data-toggle="sidebar-colapse" href="#">
+                  <i class="bi bi-chevron-double-left text-white"></i>
+                </a>
+              </li>
+            </ul>
+            <!-- LOGO COMPANY -->
+
+            <!-- NAVIGASI HORIZONTAL -->
+            <ul class="nav justify-content-end">
+              <!-- NAV NOTIFICATION -->
+              <li class="nav-item dropdown">
+                <button class="btn btn-link nav-link py-2 px-0 px-lg-2 text-white" id="bd-versions" data-bs-toggle="dropdown" aria-expanded="true" data-bs-display="static">
+                  <i class="bi bi-bell-fill"></i>
+                </button>
+                <!-- DROPDOWN NAVIGATION -->
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="bd-versions" data-bs-popper="static" style="min-width: 20em;" >
+                  <li><h6 class="dropdown-header text-capitalize text-center">Notification</h6></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li style="overflow: auto; max-height:200px">
+                    <div class="border-bottom border-light py-2 px-2">
+                      <div class="row">
+                        <div class="col-2">
+                          <span class="btn btn-danger px-3">I</span>
+                        </div>
+                        <div class="col-7">
+                          <p class="fw-bold mb-0">Info Tugas Akhir</p>
+                          <small class="text-muted">13 minutes ago</small>
+                        </div>
+                        <div class="col-3 text-right">
+                          <button class="btn btn-light" type="button" title="Read more">
+                            <i class="bi bi-arrow-right text-black-50"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="border-bottom border-light py-2 px-2">
+                      <div class="row">
+                        <div class="col-2">
+                          <span class="btn btn-info text-white px-3">J</span>
+                        </div>
+                        <div class="col-7">
+                          <p class="fw-bold mb-0">Jadwal UAS</p>
+                          <small class="text-muted">1 hour ago</small>
+                        </div>
+                        <div class="col-3 text-right">
+                          <button class="btn btn-light" type="button" title="Read more">
+                            <i class="bi bi-arrow-right text-black-50"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="border-bottom border-light  py-2 px-2">
+                      <div class="row">
+                        <div class="col-2">
+                          <span class="btn btn-success px-3">S</span>
+                        </div>
+                        <div class="col-7">
+                          <p class="fw-bold mb-0">Selamat Idul Fitri</p>
+                          <small class="text-muted">14 days ago</small>
+                        </div>
+                        <div class="col-3 text-right">
+                          <button class="btn btn-light" type="button" title="Read more">
+                            <i class="bi bi-arrow-right text-black-50"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="border-bottom border-light py-2 px-2">
+                      <div class="row">
+                        <div class="col-2">
+                          <span class="btn btn-danger px-3">I</span>
+                        </div>
+                        <div class="col-7">
+                          <p class="fw-bold mb-0">Info Tugas Akhir</p>
+                          <small class="text-muted">13 minutes ago</small>
+                        </div>
+                        <div class="col-3 text-right">
+                          <button class="btn btn-light" type="button" title="Read more">
+                            <i class="bi bi-arrow-right text-black-50"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="border-bottom border-light py-2 px-2">
+                      <div class="row">
+                        <div class="col-2">
+                          <span class="btn btn-info text-white px-3">J</span>
+                        </div>
+                        <div class="col-7">
+                          <p class="fw-bold mb-0">Jadwal UAS</p>
+                          <small class="text-muted">1 hour ago</small>
+                        </div>
+                        <div class="col-3 text-right">
+                          <button class="btn btn-light" type="button" title="Read more">
+                            <i class="bi bi-arrow-right text-black-50"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class=" py-2 px-2">
+                      <div class="row">
+                        <div class="col-2">
+                          <span class="btn btn-success px-3">S</span>
+                        </div>
+                        <div class="col-7">
+                          <p class="fw-bold mb-0">Selamat Idul Fitri</p>
+                          <small class="text-muted">14 days ago</small>
+                        </div>
+                        <div class="col-3 text-right">
+                          <button class="btn btn-light" type="button" title="Read more">
+                            <i class="bi bi-arrow-right text-black-50"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                  </li>
+
+                  <li><hr class="dropdown-divider"></li>
+                  
+                  <li>
+                    <a class="dropdown-header text-capitalize text-center text-decoration-none" href="#">
+                      view all
+                    </a>
+                  </li>
+                </ul>
+                <!-- END DROPDOWN NAVIGATION -->
+              </li>
+              <!-- END NAV NOTIFICATION -->
+
+              <!-- NAV MESSAGE -->
+              <li class="nav-item">
+                <a class="nav-link text-white" href="#" title="Message">
+                  <i class="bi bi-chat-left-fill"></i>
+                </a>
+              </li>
+              <!-- END NAV MESSAGE -->
+
+              <!-- NAV PROFILE -->
+              <li class="nav-item dropdown">
+                <button class="btn btn-link nav-link py-2 px-0 px-lg-2 dropdown-toggle text-white" id="bd-versions" data-bs-toggle="dropdown" aria-expanded="true" data-bs-display="static">
+                  <img src="./assets/img/ava-1.png" alt="Febry" width="25" height="25" class="rounded-circle border border-info bg-white">
+                </button>
+                <!-- DROPDOWN PROFILE -->
+                <ul class="dropdown-menu dropdown-menu-end" id="pop-profile" aria-labelledby="bd-versions" data-bs-popper="static">
+                  <li><h6 class="dropdown-header text-capitalize text-center">Hi <span class="username">-</span></h6></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li>
+                    <a class="dropdown-item current" aria-current="true" href="profile.html">
+                      Profile
+                    </a>
+                  </li>
+                  <li>
+                      <a class="dropdown-item" href="login.html">Sign Out</a>
+                  </li>
+                </ul>
+                <!-- END DROPDOWN PROFILE -->
+              </li>
+              <!-- END NAV PROFILE -->
+
+            </ul>
+            <!-- END NAVIGASI HORIZONTAL -->
+          </div>
+        </div>
+      </nav>
+    </header>
+    <!-- END HEADER NAVIGATION -->
+
+    
+    <main class="row" id="main-section">
+    <!-- COLUMN LEFT -->
+      <!-- NAVIGASI ON SIDEBAR -->
+      <nav id="sidebar-container" class="sidebar-expanded d-none d-lg-block">
+        <ul class="nav list-group">
+          <!-- NAV TITLE ACADEMIC -->
+          <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed" >
+            <small class="text-white">Academic</small>
+          </li>
+          <!-- END NAV TITLE ACADEMIC -->
+
+          <!-- NAV DASHBOARD -->
+          <li>
+            <a class="bg-dark list-group-item list-group-item-action flex-column align-items-start" href="index.html" >
+              <div class="d-flex w-100 justify-content-start align-items-center" >
+                <span class="bi bi-house-door me-3"></span>
+                <span class="menu-collapsed">Dashboard</span>
+              </div>
+            </a>
+          </li>
+          <!-- END  NAV DASHBOARD -->
+
+          <!-- NAV MY ATTENDANCE -->
+          <li>
+            <a class="bg-dark list-group-item active list-group-item-action flex-column align-items-start" href="my-attendance.html" >
+              <div class="d-flex w-100 justify-content-start align-items-center" >
+                <span class="bi bi-calendar2-check me-3"></span>
+                <span class="menu-collapsed">My Attendance</span>
+              </div>
+            </a>
+          </li>
+          <!-- END NAV MY ATTENDANCE -->
+
+          <!-- NAV RE-REGISTRATION -->
+          <li>
+            <a
+              class="bg-dark list-group-item list-group-item-action flex-column align-items-start "
+              data-bs-toggle="collapse"
+              href="#submenuRereg"
+              role="button"
+              aria-expanded="false"
+              aria-controls="collapseExample"
+            >
+              <div class="d-flex w-100 justify-content-start align-items-center" >
+                <i class="bi bi-pencil-square me-3"></i>
+                <span class="menu-collapsed d-flex w-100">
+                  <span>
+                    Re-registration  
+                  </span>
+                  <i class="bi bi-caret-down-fill ms-auto"></i>
+                </span>
+                
+              </div>
+            </a>
+
+            <!-- DROPDOWN MY ATTENDANCE -->
+            <div class="collapse" id="submenuRereg">
+              <a
+                href="pcf.html"
+                class="list-group-item list-group-item-action bg-dark text-white"
+              >
+                <span class="menu-collapsed">Plan Course Form</span>
+              </a>
+              <a
+                href="coourse-plan.html"
+                class="list-group-item list-group-item-action bg-dark text-white"
+              >
+                <span class="menu-collapsed">My Course Plan</span>
+              </a>
+            </div>
+            <!-- END DROPDOWN MY ATTENDANCE -->
+          </li>
+          <!-- END NAV RE-REGISTRATION -->
+          
+
+          <!-- NAV SCORE AND GRADE -->
+          <li>
+            <a
+              class="bg-dark list-group-item list-group-item-action flex-column align-items-start"
+              data-bs-toggle="collapse"
+              href="#submenuScore"
+              role="button"
+              aria-expanded="false"
+              aria-controls="collapseExample"
+            >
+              <div class="d-flex w-100 justify-content-start align-items-center" >
+                <i class="bi bi-pie-chart me-3"></i>
+                <span class="menu-collapsed d-flex w-100">
+                  Score and Grade
+                  <i class="bi bi-caret-down-fill ms-auto"></i>
+                </span>
+              </div>
+            </a>
+
+            <!-- DROPDOWN SCORE AND GRADE -->
+            <div class="collapse" id="submenuScore">
+              <a
+                href="#"
+                class="list-group-item list-group-item-action bg-dark text-white"
+              >
+                <span class="menu-collapsed">View Score</span>
+              </a>
+
+              <a
+                href="#"
+                class="list-group-item list-group-item-action bg-dark text-white"
+              >
+                <span class="menu-collapsed">Print Transcript</span>
+              </a>
+            </div>
+            <!-- END DROPDOWN SCORE AND GRADE -->
+          </li>
+          <!-- END NAV SCORE AND GRADE -->
+          
+
+          <!-- NAV TITLE FINANCE -->
+          <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed" >
+            <small class="text-white">Finance</small>
+          </li>
+          <!-- END NAV TITLE FINANCE -->
+
+          <!-- NAV BILLING -->
+          <li>
+            <a href="billing.html" class="bg-dark list-group-item list-group-item-action">
+              <div
+                class="d-flex w-100 justify-content-start align-items-center"
+              >
+                <span class="bi bi-bank me-3"></span>
+                <span class="menu-collapsed">Billing</span>
+              </div>
+            </a>
+          </li>
+          <!-- END NAV BILLING -->
+
+        </ul>
+      </nav>
+      <!-- END NAVIGASI ON SIDEBAR -->
+    <!-- END COLUMN LEFT -->
+
+    <!-- COLUMN RIGHT -->
+      <section class="col px-0" style="background-color:#f5f8fa ;">
+        <!-- BREADCRUMB -->
+        <div class="toolbar">
+          <div class="container d-flex flex-start">
+            <div class="page-title d-flex align-items-center flex-wrap">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                  <li class="breadcrumb-item" aria-current="page">My Attendance</li>
+                  <li class="breadcrumb-item active" aria-current="page">Detail Attendance</li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+        </div>
+        <!-- END BREADCRUMB -->
+        
+        <!-- CONTENT -->
+        <div class="container p-3">
+          <div class="card mb-3 border-0">
+            <div class="card-body">
+              <span class="badge bg-info px-3 fw-bolder me-auto float-end">Active</span>
+              <h3 class="m-0 text-dark">Lab Pemograman Website</h3>
+              <p class="text-muted m-0">Code ABC-654</p>
+
+            </div>
+          </div>
+
+          <div class="card mb-3">
+            <div class="card-header">
+              List of your attendance
+            </div>
+            <div class="card-body">
+              table
+            </div>
+          </div>
+
+
+
+          <footer>
+            <p class="text-center"><small>Copyright &copy; 2022 IBIK</small></p>
+          </footer>
+        </div>
+        <!-- END CONTENT -->
+      </section>
+    <!-- END COLUMN RIGHT -->
+    </main>
+  </body>
+</html>
